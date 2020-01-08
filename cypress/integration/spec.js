@@ -31,7 +31,7 @@ it('has 2 expects and a wrapped should', () => {
   cy.wrap(3).should('equal', 3)
 })
 
-it('has async assertion', () => {
+it('has async assertion, will wait automatically', () => {
   plan(2)
   expect(1, 'one').to.equal(1)
   setTimeout(() => {
