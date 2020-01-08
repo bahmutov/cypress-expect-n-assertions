@@ -1,16 +1,23 @@
 // enables intelligent code completion for Cypress commands
 // https://on.cypress.io/intelligent-code-completion
 /// <reference types="Cypress" />
-
-Cypress.Commands.add('plan', function (n) {
-  // TODO check if the number was set already
-  cy.state('expectAssertions', n)
-})
-
 it('has 2 expects', () => {
   cy.plan(2)
   expect(1, 'one').to.equal(1)
   expect(2, 'two').to.equal(2)
+})
+
+it('has 1 should', () => {
+  cy.plan(1)
+  cy.wrap(3).should('equal', 3)
+  // cy.wrap(3).should(() => {
+  //   debugger
+  // })
+})
+
+it('has 1 should and 1 and', () => {
+  cy.plan(2)
+  cy.wrap(3).should('equal', 3).and('be.gt', 2)
 })
 
 it('has 2 expects and a wrapped should', () => {
@@ -28,7 +35,9 @@ it('has async assertion', () => {
   }, 2000)
 })
 
-it('has async should retry', () => {
+// hmm, how to prevent counting multiple times assertion increments
+// when should(cb) calls `expect` again and again
+it.skip('has async should retry', () => {
   cy.plan(1)
 
   let x
@@ -65,44 +74,3 @@ it.skip('fails', () => {
 //     done()
 //   }, 3000)
 // })
-
-afterEach(function () {
-  console.log('in afterEach', this.currentTest)
-  if (this.currentTest.state === 'passed') {
-    // look at expected and actual number of assertions
-    const commands = this.currentTest.commands
-    let assertions = Cypress._.filter(commands, {name: 'assert'})
-    console.log('%d assertions', assertions.length)
-    console.table(assertions)
-
-    const expectAssertions = cy.state('expectAssertions')
-    if (Cypress._.isFinite(expectAssertions) && assertions.length !== expectAssertions) {
-      if (assertions.length < expectAssertions) {
-        // wait - maybe another assertion will happen!
-        return new Promise((resolve) => {
-          let interval
-          const maxWait = Cypress.config().defaultCommandTimeout
-          const startedAt = Number(new Date())
-          const checkNumber = () => {
-            assertions = Cypress._.filter(commands, {name: 'assert'})
-
-            if (assertions.length === expectAssertions) {
-              console.log('all good')
-              clearInterval(interval)
-              return resolve()
-            }
-            const elapsed = new Date() - startedAt
-            if (elapsed > maxWait) {
-              clearInterval(interval)
-              expect(assertions.length, 'planned assertions timed out').to.equal(expectAssertions)
-              return resolve()
-            }
-          }
-          interval = setInterval(checkNumber, 10)
-        })
-      } else {
-        expect(assertions.length, 'planned assertions').to.equal(expectAssertions)
-      }
-    }
-  }
-})

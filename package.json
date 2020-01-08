@@ -1,14 +1,14 @@
 {
   "name": "cypress-expect-n-assertions",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cypress helper that checks number of expected and actual assertions in the test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "cypress": "3.8.1"
   }
