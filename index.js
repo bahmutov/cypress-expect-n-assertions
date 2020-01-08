@@ -1,43 +1,50 @@
 /// <reference types="Cypress" />
 
-Cypress.Commands.add('plan', function (n) {
-  // TODO check if the number was set already
-  cy.state('expectAssertions', n)
-})
+module.exports = {
+  plan (n) {
+    // TODO check if the number was set already
+    cy.state('expectAssertions', n)
+  }
+}
 
-Cypress.Commands.overwrite('should', (_should, ...args) => {
-  console.log(...args)
+const shouldOverwrite = (_should, ...args) => {
+  // console.log(...args)
   if (!Cypress._.isFunction(args[1])) {
     // debugger
     incrementAssertions()
+    return _should(...args)
   }
-  return _should(...args)
-})
 
-Cypress.Commands.overwrite('and', (_and, ...args) => {
-  incrementAssertions()
-  return _and(...args)
-})
+  const n = getActualAssertions()
+  return _should(...args).tapCatch(() => {
+    // restore assertion count to prevent retries
+    // from incrementing the counter A LOT
+    setActualAssertions(n)
+  })
+}
+
+Cypress.Commands.overwrite('should', shouldOverwrite)
+
+Cypress.Commands.overwrite('and', shouldOverwrite)
 
 const getActualAssertions = () => {
   return cy.state('actualAssertions') || 0
 }
 
+const setActualAssertions = (n) => {
+  cy.state('actualAssertions', n)
+}
+
 const incrementAssertions = () => {
   const actual = getActualAssertions()
-  cy.state('actualAssertions', actual + 1)
+  setActualAssertions(actual + 1)
 }
 
 const _expect = expect
 expect = (val, message) => {
-  console.log('retries', cy.state('runnable'))
-
-  debugger
+  // console.log('retries', cy.state('runnable'))
   incrementAssertions()
   return _expect(val, message)
-}
-chai.should = () => {
-  debugger
 }
 
 afterEach(function () {
