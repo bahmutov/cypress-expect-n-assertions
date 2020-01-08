@@ -41,6 +41,12 @@ The video below shows how the test automatically waits (up to `defaultCommandTim
 
 ![Automatic wait](images/auto-wait.gif)
 
+## Limitations
+
+To avoid multiple mocking of `expect`, for now you can only run individual spec files. Do not use "Run all specs" button.
+
+![Run all button](images/run-all.png)
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2020
