@@ -1,4 +1,4 @@
-# cypress-expect-n-assertions [![CircleCI](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master.svg?style=svg)](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master)
+# cypress-expect-n-assertions [![renovate-app badge][renovate-badge]][renovate-app] [![CircleCI](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master.svg?style=svg)](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master)
 > Cypress helper that checks number of expected and actual assertions in the test
 
 ## Example
@@ -87,3 +87,6 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
+
+[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
+[renovate-app]: https://renovateapp.com/
