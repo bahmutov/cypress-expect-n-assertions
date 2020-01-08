@@ -1,4 +1,4 @@
-# cypress-expect-n-assertions
+# cypress-expect-n-assertions [![CircleCI](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master.svg?style=svg)](https://circleci.com/gh/bahmutov/cypress-expect-n-assertions/tree/master)
 > Cypress helper that checks number of expected and actual assertions in the test
 
 ## Example
