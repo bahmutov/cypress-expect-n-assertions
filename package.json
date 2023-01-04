@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "badges": "npx -p dependency-version-badge update-badge cypress"
   },
   "keywords": ["cypress-plugin"],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
