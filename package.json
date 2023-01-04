@@ -8,12 +8,14 @@
     "semantic-release": "semantic-release",
     "badges": "npx -p dependency-version-badge update-badge cypress"
   },
-  "keywords": ["cypress-plugin"],
+  "keywords": [
+    "cypress-plugin"
+  ],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "cypress": "9.7.0",
-    "semantic-release": "17.2.3"
+    "semantic-release": "^19.0.5"
   },
   "files": [
     "index.js"
