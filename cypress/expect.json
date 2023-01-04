@@ -9,6 +9,9 @@
   "fails-3": {
     "fails by waiting for an assertion": "fail"
   },
+  "fails-4": {
+    "waits but there are not enough assertions": "fail"
+  },
   "has 2 expects": "pass",
   "has 1 should": "pass",
   "has 1 should callback": "pass",
