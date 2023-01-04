@@ -1,10 +1,10 @@
 /// <reference types="Cypress" />
 
 module.exports = {
-  plan (n) {
+  plan(n) {
     // TODO check if the number was set already
     cy.state('expectAssertions', n)
-  }
+  },
 }
 
 const shouldOverwrite = (_should, ...args) => {
@@ -40,7 +40,9 @@ const incrementAssertions = () => {
   setActualAssertions(actual + 1)
 }
 
+// overwrite the global "expect" function
 const _expect = expect
+
 expect = (val, message) => {
   // console.log('retries', cy.state('runnable'))
   incrementAssertions()
@@ -48,40 +50,21 @@ expect = (val, message) => {
 }
 
 afterEach(function () {
-  console.log('in afterEach', this.currentTest)
   if (this.currentTest.state === 'passed') {
     // look at expected and actual number of assertions
-    // hmm, there is no commands in non-interactive mode
-    // const commands = this.currentTest.commands
-    // let assertions = Cypress._.filter(commands, {name: 'assert'})
     let assertions = getActualAssertions()
-    console.log('%d assertions', assertions)
-    // console.table(assertions)
 
     const expectAssertions = cy.state('expectAssertions')
-    if (Cypress._.isFinite(expectAssertions) && assertions !== expectAssertions) {
+    // console.log('%d assertions %d expected', assertions, expectAssertions)
+    if (
+      Cypress._.isFinite(expectAssertions) &&
+      assertions !== expectAssertions
+    ) {
       if (assertions < expectAssertions) {
-        // wait - maybe another assertion will happen!
-        return new Promise((resolve) => {
-          let interval
-          const maxWait = Cypress.config().defaultCommandTimeout
-          const startedAt = Number(new Date())
-          const checkNumber = () => {
-            assertions = getActualAssertions()
-
-            if (assertions === expectAssertions) {
-              console.log('all good')
-              clearInterval(interval)
-              return resolve()
-            }
-            const elapsed = new Date() - startedAt
-            if (elapsed > maxWait) {
-              clearInterval(interval)
-              expect(assertions, 'assertions vs planned').to.equal(expectAssertions)
-              return resolve()
-            }
-          }
-          interval = setInterval(checkNumber, 10)
+        // wait until the number of assertions becomes the expected number
+        cy.wrap(null, { log: false }).should(() => {
+          assertions = getActualAssertions()
+          expect(assertions, 'assertions vs planned').to.equal(expectAssertions)
         })
       } else {
         expect(assertions, 'assertions vs planned').to.equal(expectAssertions)

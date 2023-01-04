@@ -6,6 +6,9 @@
   "fails-2": {
     "fails if there are no assertions": "fail"
   },
+  "fails-3": {
+    "fails by waiting for an assertion": "fail"
+  },
   "has 2 expects": "pass",
   "has 1 should": "pass",
   "has 1 should callback": "pass",
