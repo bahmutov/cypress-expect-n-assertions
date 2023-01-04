@@ -1,0 +1,14 @@
+{
+  "fails synchronously": "fail",
+  "fails wrong number of assertions": "fail",
+  "has 2 expects": "pass",
+  "has 1 should": "pass",
+  "has 1 should callback": "pass",
+  "has 1 should and 1 and": "pass",
+  "has 2 expects and a wrapped should": "pass",
+  "second spec": {
+    "has 10 expects": "pass"
+  },
+  "has async assertion, will wait automatically": "pass",
+  "has async should retry - will wait because plans 1 assertion": "pass"
+}
