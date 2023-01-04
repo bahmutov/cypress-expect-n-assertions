@@ -1,6 +1,8 @@
 {
-  "fails synchronously": "fail",
-  "fails wrong number of assertions": "fail",
+  "fails-1": {
+    "fails synchronously": "fail",
+    "fails wrong number of assertions": "fail"
+  },
   "has 2 expects": "pass",
   "has 1 should": "pass",
   "has 1 should callback": "pass",
