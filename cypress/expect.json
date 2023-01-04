@@ -1,7 +1,9 @@
 {
   "fails-1": {
     "fails synchronously": "fail",
-    "fails wrong number of assertions": "fail",
+    "fails wrong number of assertions": "fail"
+  },
+  "fails-2": {
     "fails if there are no assertions": "fail"
   },
   "has 2 expects": "pass",
