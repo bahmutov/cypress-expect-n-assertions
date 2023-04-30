@@ -1,4 +1,4 @@
-# cypress-expect-n-assertions [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-expect-n-assertions/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/bahmutov/cypress-expect-n-assertions/actions/workflows/ci.yml) ![cypress version](https://img.shields.io/badge/cypress-12.10.0-brightgreen)
+# cypress-expect-n-assertions [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-expect-n-assertions/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/bahmutov/cypress-expect-n-assertions/actions/workflows/ci.yml) ![cypress version](https://img.shields.io/badge/cypress-12.11.0-brightgreen)
 > Cypress helper that checks number of expected and actual assertions in the test
 
 ## Example
