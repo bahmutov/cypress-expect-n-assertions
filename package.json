@@ -17,7 +17,7 @@
     "cypress": "12.17.0",
     "cypress-expect": "2.5.3",
     "prettier": "2.8.8",
-    "semantic-release": "^19.0.5"
+    "semantic-release": "^23.0.0"
   },
   "files": [
     "index.js"
